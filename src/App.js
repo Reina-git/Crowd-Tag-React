@@ -1,11 +1,33 @@
 import React from "react";
+import "./style/master.scss";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AdminAddPhotoCollection from "./components/pages/AdminAddPhotoCollections";
+import Landing from "./components/pages/Landing";
+import AdminCollections from "./components/pages/AdminCollections";
+import Collection from "./components/pages/Collection";
+import Image from "./components/pages/Image";
+import LibraryLogin from "./components/pages/LibraryLogin";
+import Login from "./components/pages/Login";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   return (
-    <div>
-      <h1>Hello Crowd Tag React test</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route
+          exact
+          path="/admin-add-photo-collection"
+          component={AdminAddPhotoCollection}
+        />
+        <Route exact path="/admin-collections" component={AdminCollections} />
+        <Route exact path="/collection" component={Collection} />
+        <Route exact path="/image" component={Image} />
+        <Route exact path="/library-login" component={LibraryLogin} />
+        <Route exact path="/login" component={Login} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
-
 export default App;
