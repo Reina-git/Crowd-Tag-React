@@ -1,26 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../images/noun_shutter_1063959.svg";
 
 export default function LibraryLogin() {
   return (
-    <div class="container">
+    <div className="container">
       <div className="row">
         <div className="col-12 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
           <div className="row">
             {/* <!-- top banner--> */}
             <div className="col-12 mt-6">
-              <a href="index.html" className="Logo-link">
-                <img
-                  src="/images/noun_shutter_1063959.svg"
-                  className="mt-n2 logo"
-                />
+              <Link to="/" className="Logo-link">
+                <img src={Logo} className="mt-n2 logo" alt="shutter logo" />
                 <h1 className="d-inline ml-2 font-family-brand" id="logo-text">
                   Crowd Tag
                 </h1>
-              </a>
+              </Link>
             </div>
           </div>
-          {/* 
-        <!-- Collection thumbnails--> */}
 
           {/* <!-- this is the nice to meet you card--> */}
           <div className="row">
@@ -34,7 +31,7 @@ export default function LibraryLogin() {
                 >
                   Sign up
                 </button>
-                <div id="sign-up-card" style="display: none">
+                <div id="sign-up-card" style={{ display: "none" }}>
                   <p className="text-primary mt-3">
                     Let's get you tagging some photographs.
                   </p>
@@ -43,7 +40,7 @@ export default function LibraryLogin() {
 
                   <div className="input-group mb-3 mt-2">
                     <input
-                      style=""
+                      style={{}}
                       type="text"
                       id="sign-up-email-input"
                       className="form-control"
@@ -84,40 +81,40 @@ export default function LibraryLogin() {
             {/* <!-- this is the welcome back card--> */}
 
             <div className="col-12 col-md-5 ml-md-7">
-              <div class="card card-body-padding mt-9 d-flex">
+              <div className="card card-body-padding mt-9 d-flex">
                 <h2>Welcome back</h2>
 
-                <p class="text-muted mt-3 lead">Email address</p>
+                <p className="text-muted mt-3 lead">Email address</p>
 
-                <div class="input-group mb-3 mt-2">
+                <div className="input-group mb-3 mt-2">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default"
                     id="email-input"
                   />
                 </div>
 
-                <p class="text-muted mt-3 lead">Password</p>
+                <p className="text-muted mt-3 lead">Password</p>
 
-                <div class="input-group mb-3 mt-2">
+                <div className="input-group mb-3 mt-2">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default"
                     id="password-input"
                   />
                 </div>
 
-                <a
-                  href="/admin-collections.html"
-                  class="btn btn-primary mt-5"
+                <Link
+                  to="/admin-collections"
+                  className="btn btn-primary mt-5"
                   id="login-button"
                 >
                   Login!
-                </a>
+                </Link>
               </div>
             </div>
           </div>

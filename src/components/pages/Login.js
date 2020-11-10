@@ -1,5 +1,6 @@
 import React from "react";
-import Header from "../ui/Header";
+import { Link } from "react-router-dom";
+import Logo from "../../images/noun_shutter_1063959.svg";
 
 export default function Login() {
   return (
@@ -8,10 +9,15 @@ export default function Login() {
         <div className="col-12 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
           <div className="row">
             {/* <!-- top banner--> */}
-            <Header />
+            <div className="col-12 mt-6">
+              <Link to="/" className="Logo-link">
+                <img src={Logo} className="mt-n2 logo" alt="shutter logo" />
+                <h1 className="d-inline ml-2 font-family-brand" id="logo-text">
+                  Crowd Tag
+                </h1>
+              </Link>
+            </div>
           </div>
-
-          {/* <!-- Collection thumbnails--> */}
 
           {/* <!-- this is the nice to meet you card--> */}
           <div className="row">
@@ -25,7 +31,7 @@ export default function Login() {
                 >
                   Sign up
                 </button>
-                <div id="sign-up-card" style="display: none">
+                <div id="sign-up-card" style={{}}>
                   <p className="text-primary mt-3">
                     Let's get you tagging some photographs.
                   </p>
@@ -34,7 +40,7 @@ export default function Login() {
 
                   <div className="input-group mb-3 mt-2">
                     <input
-                      style={""}
+                      style={{}}
                       type="text"
                       id="sign-up-email-input"
                       className="form-control"
@@ -103,13 +109,13 @@ export default function Login() {
                   />
                 </div>
 
-                <a
-                  href="/image.html"
+                <Link
+                  to="/image"
                   className="btn btn-primary mt-5"
                   id="login-button"
                 >
                   Login!
-                </a>
+                </Link>
               </div>
             </div>
           </div>
