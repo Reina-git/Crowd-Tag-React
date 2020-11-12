@@ -3,5 +3,5 @@ const userSchema = {
   email: String,
   password: String,
   createdAt: Number,
-  accountType: String,
+  institutionName: String,
 };

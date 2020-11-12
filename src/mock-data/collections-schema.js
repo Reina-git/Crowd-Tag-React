@@ -1,7 +1,6 @@
 const collectionsSchema = {
   id: String,
-  collectionName: String,
-  collectionDesc: String,
+  name: String,
   userId: String,
   createdAt: Number,
 };

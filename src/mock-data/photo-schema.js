@@ -1,6 +1,6 @@
 const photoSchema = {
-  photoId: String,
-  collectionID: String,
-  createdAt: Number,
+  id: String,
+  collectionId: String,
+  uploadedAt: Number,
   fileName: String,
 };

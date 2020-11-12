@@ -4,7 +4,11 @@ import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
 import RedX from "../../icons/icon-close.svg";
-import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
+// import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
+import collections from "../../mock-data/nestedCollections";
+console.log(collections);
+const collection = collections[0];
+const photo = collection.photos[0];
 
 export default function Image() {
   return (
@@ -31,7 +35,7 @@ export default function Image() {
           </div>
           <div className="col-8 col-md-10">
             <div>
-              <img src={Photo} className="img-fluid" alt="description" />
+              <img src={photo.url} className="img-fluid" alt="" />
             </div>
           </div>
 
@@ -54,7 +58,6 @@ export default function Image() {
           </Link>
         </div>
       </div>
-
       <div className="row">
         <div className="col-12 mt-5">
           <p className="text-primary">Type a tag then press enter.</p>

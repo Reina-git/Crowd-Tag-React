@@ -1,7 +1,7 @@
 const tagSchema = {
   id: String,
-  photoID: String,
-  userID: String,
+  photoId: String,
+  userId: String,
   createdAt: Number,
   tag: String,
 };
