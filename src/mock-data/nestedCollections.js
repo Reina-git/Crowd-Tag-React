@@ -1,9 +1,10 @@
-const nestedCollections = [
+export const nestedCollections = [
   {
     id: "4b6f2787-54ac-4834-baae-8353925e589f",
     name: "Suffragists",
     userId: "ef3d5c68-02c7-4959-864e-9ccafc402228",
     createdAt: 1604016000,
+    institutionName: "Schlesinger Library on the History of Women in America",
     photos: [
       {
         id: "0201ab92-51eb-461b-b6af-91788f76d0e8",
@@ -11,7 +12,7 @@ const nestedCollections = [
         uploadedAt: 1604822400000,
         fileName: "a143-3a-17_40944652100_o.jpg",
         url:
-          "/Users/reina/code/Crowd-Tag-React/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg",
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg",
         tags: [
           {
             id: "81b25313-861b-4e2d-b57f-f677b1becb46",
@@ -36,7 +37,7 @@ const nestedCollections = [
         createdAt: 1604822400100,
         fileName: "a33-2v-39_48051603162_o.jpg",
         url:
-          "/Users/reina/code/Crowd-Tag-React/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a33-2v-39_48051603162_o.jpg",
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a33-2v-39_48051603162_o.jpg",
         tags: [
           {
             id: "81b25313-861b-4e2d-b57f-f677b1becb46",
@@ -62,6 +63,7 @@ const nestedCollections = [
     name: "Tintypes",
     userId: "ef3d5c68-02c7-4959-864e-9ccafc402228",
     createdAt: 1604016000,
+    institutionName: "Schlesinger Library on the History of Women in America",
     photos: [
       {
         id: "22c61646-28a8-4213-a2b4-bc7adeced010",
@@ -69,7 +71,7 @@ const nestedCollections = [
         uploadedAt: 1604649600000,
         fileName: "47849584872_ac61b55a55_o.jpg",
         url:
-          "/Users/reina/code/Crowd-Tag-React/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Tintypes/47849584872_ac61b55a55_o.jpg",
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/images/Schlesinger-Library-on-the-History-of-Women-in-America/Tintypes/47849584872_ac61b55a55_o.jpg",
         tags: [
           {
             id: String,
@@ -85,13 +87,14 @@ const nestedCollections = [
     name: "Historical Photographs",
     userId: "e23966a1-8005-4941-a7ea-f7a19054aaa7",
     createdAt: 1605035555538,
+    institutionName: "Vancouver Public Library",
     photos: [
       {
         id: "036840c2-c6e4-48ba-9a75-b143784e0e93",
         uploadedAt: 1605038256364,
         fileName: "10984259635_a398e41a81_o.jpg",
         url:
-          "/Users/reina/code/Crowd-Tag-React/src/images/Vancouver-Public-Library/10984259635_a398e41a81_o.jpg",
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/images/Vancouver-Public-Library/10984259635_a398e41a81_o.jpg",
         tags: [
           {
             id: "664f16b4-287f-4867-b01e-5c4a8e647d67",
@@ -103,4 +106,3 @@ const nestedCollections = [
     ],
   },
 ];
-export default nestedCollections;

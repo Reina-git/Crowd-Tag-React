@@ -1,4 +1,4 @@
-const users = [
+export const users = [
   {
     id: "e7cb9ca6-23e5-428f-a801-885e00720b3b",
     email: "reinadu@gmail.com",

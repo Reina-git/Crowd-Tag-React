@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
 import RedX from "../../icons/icon-close.svg";
 // import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
-import collections from "../../mock-data/nestedCollections";
-console.log(collections);
-const collection = collections[0];
+import { nestedCollections } from "../../mock-data/nestedCollections";
+console.log(nestedCollections);
+const collection = nestedCollections[0];
 const photo = collection.photos[0];
 
-export default function Image() {
+export default function Image(props) {
+  console.log(photo.url);
   return (
     <AppTemplate>
       <div className="row">

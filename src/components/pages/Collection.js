@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 
 import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
 import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
+import PhotoThumbnail from "../ui/PhotoThumbnail";
+import { nestedCollections } from "../../mock-data/nestedCollections";
+console.log(nestedCollections);
+const collection = nestedCollections[0];
 
 export default function Collection() {
   return (
@@ -23,42 +27,17 @@ export default function Collection() {
       <hr className="mt-2 mb-5" />
 
       <div className="row">
-        {/* <!--Thumbnail start--> */}
-        <div className="col-lg-3 col-md-4 col-6 mb-5">
-          <Link to="/image">
-            <div className="img-square">
-              <img className="img-thumbnail" src={Photo} alt="" />
+        {collection.photos.map((photo) => {
+          return (
+            <div className="col-lg-3 col-md-4 col-6 mb-5">
+              <Link to="/image">
+                <div className="img-square">
+                  <img className="img-thumbnail" src={photo.url} alt="" />
+                </div>
+              </Link>
             </div>
-          </Link>
-        </div>
-        {/* <!--Thumbnail end--> */}
-        {/* <!--Thumbnail start--> */}
-        <div className="col-lg-3 col-md-4 col-6 mb-5">
-          <Link to="/image">
-            <div className="img-square">
-              <img className="img-thumbnail" src={Photo} alt="" />
-            </div>
-          </Link>
-        </div>
-        {/* <!--Thumbnail end--> */}
-        {/* <!--Thumbnail start--> */}
-        <div className="col-lg-3 col-md-4 col-6 mb-5">
-          <Link to="/image">
-            <div className="img-square">
-              <img className="img-thumbnail" src={Photo} alt="" />
-            </div>
-          </Link>
-        </div>
-        {/* <!--Thumbnail end--> */}
-        {/* <!--Thumbnail start--> */}
-        <div className="col-lg-3 col-md-4 col-6 mb-5">
-          <Link to="/image">
-            <div className="img-square">
-              <img className="img-thumbnail" src={Photo} alt="" />
-            </div>
-          </Link>
-        </div>
-        {/* <!--Thumbnail end--> */}
+          );
+        })}
       </div>
     </AppTemplate>
   );
