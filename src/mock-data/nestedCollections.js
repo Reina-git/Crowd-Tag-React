@@ -27,7 +27,7 @@ export const nestedCollections = [
           {
             id: "9e06ba05-592a-4a31-b8aa-7c3a94140d25",
             userID: "e7cb9ca6-23e5-428f-a801-885e00720b3b",
-            name: "United States of America",
+            name: "USA",
           },
         ],
       },

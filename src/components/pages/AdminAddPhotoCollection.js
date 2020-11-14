@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import EditIcon from "../../icons/icon-edit.svg";
 import AddIcon from "../../icons/icon-add.svg";
 import TrashIcon from "../../icons/icon-trash.svg";
-import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
+import { nestedCollections } from "../../mock-data/nestedCollections";
+console.log(nestedCollections);
+const collection = nestedCollections[0];
 
 export default function AdminAddPhotoCollection() {
   return (
@@ -47,23 +49,24 @@ export default function AdminAddPhotoCollection() {
       </div>
       {/* <!-- Collection Name --> */}
       <hr className="mt-2 mb-5" />
+
       <div className="row">
-        {/* <!--Thumbnail start--> */}
-        <div className="col-lg-3 col-md-4 col-6 mb-5">
-          <Link to="/image">
-            <div className="img-square">
-              <img className="img-thumbnail" src={Photo} alt="" />
+        {collection.photos.map((photo) => {
+          return (
+            <div className="col-lg-3 col-md-4 col-6 mb-5">
+              <Link to="/image">
+                <div className="img-square">
+                  <img className="img-thumbnail" src={photo.url} alt="" />
+                </div>
+              </Link>
+              <p className="file-name-text text-break ml-1">{photo.fileName}</p>
+              <Link to="" className="remove-link tag-text-remove">
+                <img className="" src={TrashIcon} alt="" width="15px" />
+                Remove
+              </Link>
             </div>
-          </Link>
-          <p className="file-name-text text-break ml-1">
-            a143-3a-17_40944652100_o.jpg
-          </p>
-          <Link to="" className="remove-link tag-text-remove">
-            <img className="" src={TrashIcon} alt="" width="15px" />
-            Remove
-          </Link>
-        </div>
-        {/* {/* <!--Thumbnail end-->} */}
+          );
+        })}
       </div>
     </AppTemplate>
   );

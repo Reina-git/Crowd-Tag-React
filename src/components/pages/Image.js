@@ -4,7 +4,6 @@ import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
 import RedX from "../../icons/icon-close.svg";
-// import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
 console.log(nestedCollections);
 const collection = nestedCollections[0];
@@ -73,34 +72,21 @@ export default function Image(props) {
       <p className="float-right mt-2 mb-0 text-muted">
         <span id="tag-char-count">0</span>/100
       </p>
-      <div className="clearfix"></div>
+
       <div className="row">
         <div className="col-12">
-          <div className="d-inline-flex mr-2">
-            <p className="tag-text">Elizabeth Cady Stanton</p>
-            <Link to="" width="20px" className="collection-link">
-              <img src={RedX} width="20px" alt="delete" />
-            </Link>
-          </div>
-          <div className="d-inline-flex mr-2">
-            <p className="tag-text">Women's Suffrag</p>
-            <Link to="" width="20px" className="collection-link">
-              <img src={RedX} width="20px" alt="delete" />
-            </Link>
-          </div>
-          <div className="d-inline-flex">
-            <p className="tag-text">United States of America</p>
-            <Link to="" width="20px" className="collection-link">
-              <img src={RedX} width="20px" alt="delete" />
-            </Link>
-          </div>
+          <div className="clearfix"></div>
 
-          <div className="d-inline-flex mr-2">
-            <p className="tag-text">1900's</p>
-            <Link to="" width="20px" className="collection-link">
-              <img src={RedX} width="20px" alt="delete" />
-            </Link>
-          </div>
+          {photo.tags.map((tag) => {
+            return (
+              <div className="d-inline-flex mr-2">
+                <p className="tag-text">{tag.name}</p>
+                <Link to="" width="20px" className="collection-link">
+                  <img src={RedX} width="20px" alt="delete" className="mb-2" />
+                </Link>
+              </div>
+            );
+          })}
         </div>
       </div>
     </AppTemplate>
