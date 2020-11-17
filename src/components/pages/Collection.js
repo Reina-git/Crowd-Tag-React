@@ -3,8 +3,9 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
-console.log(nestedCollections);
-const collection = nestedCollections[0];
+// console.log(nestedCollections);
+// const collection = nestedCollections[0];
+import PhotoTumbnail from "../ui/PhotoThumbnail";
 
 export default function Collection() {
   return (
@@ -24,16 +25,12 @@ export default function Collection() {
       <hr className="mt-2 mb-5" />
 
       <div className="row">
-        {collection.photos.map((photo) => {
-          return (
-            <div className="col-lg-3 col-md-4 col-6 mb-5" key={photo.id}>
-              <Link to="/image">
-                <div className="img-square">
-                  <img className="img-thumbnail" src={photo.url} alt="" />
-                </div>
-              </Link>
-            </div>
-          );
+        {nestedCollections.map((collection) => {
+          if (collection.userId === "ef3d5c68-02c7-4959-864e-9ccafc402228") {
+            return (
+              <PhotoTumbnail collection={collection} key={collection.id} />
+            );
+          }
         })}
       </div>
     </AppTemplate>

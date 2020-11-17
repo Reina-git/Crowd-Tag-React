@@ -5,90 +5,132 @@ import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
 import RedX from "../../icons/icon-close.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
+import classnames from "classnames";
+import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
+
 console.log(nestedCollections);
 const collection = nestedCollections[0];
 const photo = collection.photos[0];
 
-export default function Image(props) {
-  console.log(photo.url);
-  return (
-    <AppTemplate>
-      <div className="row">
-        <div className="col mt-6 mb-n2">
-          <Link to="/collection" className="collection-link">
-            <img src={BackArrow} width="20px" className="mb-1 primary" alt="" />
-            Back to collection
-          </Link>
-        </div>
-      </div>
-      {/* <!-- Main Image--> */}
+export default class Image extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tagText: "",
+    };
+  }
+  checkHasInvalidCharCount() {
+    if (
+      this.state.tagText.length > MAX_CARD_CHARS ||
+      this.state.tagText.length === 0
+    ) {
+      return true;
+    } else return false;
+  }
 
-      <div className="row">
-        <div className="d-flex justify-content-center mt-5">
-          <div className="col-2 col-md-1 align-self-center">
-            <img
-              src={LeftChevron}
-              width="100%"
-              id="rotate-left"
-              alt="left chevron"
-            />
+  setTagText(e) {
+    this.setState({ tagText: e.target.value });
+  }
+  render() {
+    console.log(photo.url);
+    return (
+      <AppTemplate>
+        <div className="row">
+          <div className="col mt-6 mb-n2">
+            <Link to="/collection" className="collection-link">
+              <img
+                src={BackArrow}
+                width="20px"
+                className="mb-1 primary"
+                alt=""
+              />
+              Back to collection
+            </Link>
           </div>
-          <div className="col-8 col-md-10">
-            <div>
-              <img src={photo.url} className="img-fluid" alt="" />
+        </div>
+        {/* <!-- Main Image--> */}
+
+        <div className="row">
+          <div className="d-flex justify-content-center mt-5">
+            <div className="col-2 col-md-1 align-self-center">
+              <img
+                src={LeftChevron}
+                width="100%"
+                id="rotate-left"
+                alt="left chevron"
+              />
+            </div>
+            <div className="col-8 col-md-10">
+              <div>
+                <img src={photo.url} className="img-fluid" alt="" />
+              </div>
+            </div>
+
+            <div className="col-2 col-md-1 align-self-center">
+              <img
+                src={LeftChevron}
+                width="100%"
+                id="rotate-right"
+                alt="right chevron"
+              />
             </div>
           </div>
-
-          <div className="col-2 col-md-1 align-self-center">
-            <img
-              src={LeftChevron}
-              width="100%"
-              id="rotate-right"
-              alt="right chevron"
+        </div>
+        {/* <!-- Input--> */}
+        <div className="row">
+          <div className="col-12 mt-5">
+            <p className="text-pimary">
+              Please log in to begin tagging photos.
+            </p>
+            <Link to="/log-in" className="btn btn-primary">
+              Log in
+            </Link>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 mt-5">
+            <p className="text-primary">Type a tag then press enter.</p>
+            <input
+              className="form-control form-control-sm mt-3"
+              type="text"
+              placeholder="Add a tag"
+              id="tagText"
+              onChange={(e) => this.setTagText(e)}
             />
           </div>
         </div>
-      </div>
-      {/* <!-- Input--> */}
-      <div className="row">
-        <div className="col-12 mt-5">
-          <p className="text-pimary">Please log in to begin tagging photos.</p>
-          <Link to="/log-in" className="btn btn-primary">
-            Log in
-          </Link>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12 mt-5">
-          <p className="text-primary">Type a tag then press enter.</p>
-          <input
-            className="form-control form-control-sm mt-3"
-            type="text"
-            placeholder="Add a tag"
-            id="tag-input"
-          />
-        </div>
-      </div>
-      <p className="float-right mt-2 mb-0 text-muted">
-        <span id="tag-char-count">0</span>/100
-      </p>
+        <p className="float-right mt-2 mb-0 text-muted">
+          <span
+            className={classnames({
+              "text-danger": checkIsOver(this.state.tagText, MAX_CARD_CHARS),
+            })}
+          >
+            {this.state.tagText.length}/{MAX_CARD_CHARS}
+          </span>
+        </p>
 
-      <div className="row">
-        <div className="col-12">
-          <div className="clearfix"></div>
+        <div className="row">
+          <div className="col-12">
+            <div className="clearfix"></div>
 
-          {photo.tags.map((tag) => {
-            return (
-              <div className="d-inline-flex mr-2">
-                <p className="tag-text">{tag.name}</p>
-                <Link to="" width="20px" className="collection-link">
-                  <img src={RedX} width="20px" alt="delete" className="mb-2" />
-                </Link>
-              </div>
-            );
-          })}
+            {photo.tags.map((tag) => {
+              return (
+                <div className="d-inline-flex mr-2">
+                  <p className="tag-text">{tag.name}</p>
+                  <Link to="" width="20px" className="collection-link">
+                    <img
+                      src={RedX}
+                      width="20px"
+                      alt="delete"
+                      className="mb-2"
+                    />
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </AppTemplate>
-  );
+      </AppTemplate>
+    );
+  }
 }

@@ -3,10 +3,8 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import EditIcon from "../../icons/icon-edit.svg";
 import AddIcon from "../../icons/icon-add.svg";
-import TrashIcon from "../../icons/icon-trash.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
-console.log(nestedCollections);
-const collection = nestedCollections[0];
+import AdminPhotoThumbnail from "../ui/AdminPhotoThumbnail";
 
 export default function AdminAddPhotoCollection() {
   return (
@@ -51,21 +49,15 @@ export default function AdminAddPhotoCollection() {
       <hr className="mt-2 mb-5" />
 
       <div className="row">
-        {collection.photos.map((photo) => {
-          return (
-            <div className="col-lg-3 col-md-4 col-6 mb-5">
-              <Link to="/image">
-                <div className="img-square">
-                  <img className="img-thumbnail" src={photo.url} alt="" />
-                </div>
-              </Link>
-              <p className="file-name-text text-break ml-1">{photo.fileName}</p>
-              <Link to="" className="remove-link tag-text-remove">
-                <img className="" src={TrashIcon} alt="" width="15px" />
-                Remove
-              </Link>
-            </div>
-          );
+        {nestedCollections.map((collection) => {
+          if (collection.userId === "ef3d5c68-02c7-4959-864e-9ccafc402228") {
+            return (
+              <AdminPhotoThumbnail
+                collection={collection}
+                key={collection.id}
+              />
+            );
+          }
         })}
       </div>
     </AppTemplate>

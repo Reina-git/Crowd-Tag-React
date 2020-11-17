@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import TrashIcon from "../../icons/icon-trash.svg";
-import Photo from "../../images/Schlesinger-Library-on-the-History-of-Women-in-America/Suffragists/a143-3a-17_40944652100_o.jpg";
+import toDisplayDate from "date-fns/format";
 
 export default function AdminCollectionUI(props) {
   console.log("AdminCollectionsUI:", props);
@@ -26,7 +26,9 @@ export default function AdminCollectionUI(props) {
           <p className="lead">{props.collection.name}</p>
         </Link>
         <p className="text-muted">{props.collection.institutionName}</p>
-        <p className="text-muted mt-2">{props.collection.createdAt}</p>
+        <p className="text-muted mt-2">
+          {toDisplayDate(props.collection.createdAt, "MMM. d, yyy")}
+        </p>
       </div>
       <div className="col-6 col-sm-2">
         <Link to="" className="remove-link float-right">
