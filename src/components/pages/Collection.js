@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
 // console.log(nestedCollections);
-// const collection = nestedCollections[0];
-import PhotoTumbnail from "../ui/PhotoThumbnail";
 
+import PhotoTumbnail from "../ui/PhotoThumbnail";
+const collection = nestedCollections[0];
 export default function Collection() {
   return (
     <AppTemplate>
@@ -20,7 +20,7 @@ export default function Collection() {
           </Link>
         </div>
       </div>
-      <h2 className="lead mt-4 mb-0">Suffragists</h2>
+      <h2 className="lead mt-4 mb-0">{collection.name}</h2>
 
       <hr className="mt-2 mb-5" />
 
