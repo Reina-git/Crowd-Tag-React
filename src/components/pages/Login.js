@@ -20,8 +20,10 @@ export default function Login() {
               </Link>
             </div>
           </div>
-          <SignUp />
-          <UserLogin />
+          <div className="row">
+            <SignUp />
+            <UserLogin />
+          </div>
         </div>
       </div>
     </div>

@@ -81,7 +81,6 @@ export default class UserLogin extends React.Component {
           <div className="input-group mb-3 mt-2">
             <input
               type="text"
-              className="form-control"
               aria-label="Sizing example input"
               className={classnames({
                 "form-control": true,
