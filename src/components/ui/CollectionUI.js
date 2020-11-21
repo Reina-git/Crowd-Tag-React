@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import toDisplayDate from "date-fns/format";
 
 export default function CollectionUI(props) {
-  console.log("Collection UI props:", props);
+  // console.log("Collection UI props:", props);
   return (
     <div className="row mt-8">
       <div className="col-12 col-sm-4">

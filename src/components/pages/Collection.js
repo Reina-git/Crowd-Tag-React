@@ -15,7 +15,12 @@ export default function Collection() {
       <div className="row">
         <div className="col mt-6 mb-0">
           <Link to="/" className="collection-link">
-            <img src={BackArrow} width="20px" className="mb-1 primary" />
+            <img
+              src={BackArrow}
+              width="20px"
+              alt="back arrow"
+              className="mb-1 primary"
+            />
             Back to collections
           </Link>
         </div>

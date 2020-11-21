@@ -8,7 +8,7 @@ import { nestedCollections } from "../../mock-data/nestedCollections";
 import classnames from "classnames";
 import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 
-console.log(nestedCollections);
+// console.log(nestedCollections);
 const collection = nestedCollections[0];
 const photo = collection.photos[0];
 
@@ -32,7 +32,7 @@ export default class Image extends React.Component {
     this.setState({ tagText: e.target.value });
   }
   render() {
-    console.log(photo.url);
+    // console.log(photo.url);
     return (
       <AppTemplate>
         <div className="row">
