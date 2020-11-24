@@ -7,12 +7,14 @@ import RedX from "../../icons/icon-close.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
 import classnames from "classnames";
 import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 // console.log(nestedCollections);
-const collection = nestedCollections[0];
-const photo = collection.photos[0];
+// const collection = nestedCollections[0];
+// const photo = collection.photos[0];
 
-export default class Image extends React.Component {
+class Image extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +34,8 @@ export default class Image extends React.Component {
     this.setState({ tagText: e.target.value });
   }
   render() {
-    // console.log(photo.url);
+    console.log("props on image page", this.props.photo);
+    const photo = this.props.photo;
     return (
       <AppTemplate>
         <div className="row">
@@ -62,7 +65,12 @@ export default class Image extends React.Component {
             </div>
             <div className="col-8 col-md-10">
               <div>
-                <img src={photo.url} className="img-fluid" alt="" />
+                <img
+                  src={photo.url}
+                  className="img-fluid"
+                  alt=""
+                  key={photo.id}
+                />
               </div>
             </div>
 
@@ -134,3 +142,10 @@ export default class Image extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    photo: state.selectedPhoto,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Image));

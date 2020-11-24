@@ -2,8 +2,9 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { withRouter } from "react-router-dom";
 
-export default class UserLogin extends React.Component {
+class UserLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,6 +68,7 @@ export default class UserLogin extends React.Component {
         createdAt: Date.now(),
       };
       console.log(user);
+      this.props.history.push("/image");
     }
   }
 
@@ -134,3 +136,4 @@ export default class UserLogin extends React.Component {
     );
   }
 }
+export default withRouter(UserLogin);

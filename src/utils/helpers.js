@@ -4,4 +4,5 @@ function checkIsOver(str, num) {
 }
 
 const MAX_CARD_CHARS = 100;
+
 export { checkIsOver, MAX_CARD_CHARS };

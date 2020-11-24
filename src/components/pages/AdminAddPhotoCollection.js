@@ -6,15 +6,18 @@ import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { nestedCollections } from "../../mock-data/nestedCollections";
 import AdminPhotoThumbnail from "../ui/AdminPhotoThumbnail";
 import Save from "../../icons/save.svg";
-const collection = nestedCollections[0];
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-export default class AdminAddPhotoCollection extends React.Component {
+// const collection = nestedCollections[0];
+// const collection = this.props.collection;
+class AdminAddPhotoCollection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isDisplayingAddPhoto: false,
       isDisplayingDelete: false,
-      collectionTitle: collection.name,
+      // collectionTitle: collection.name,
     };
   }
 
@@ -38,6 +41,8 @@ export default class AdminAddPhotoCollection extends React.Component {
   }
 
   render() {
+    // console.log("admin add photo", this.props.collection.photos);
+    // const collection = this.props.collection;
     return (
       <AppTemplate>
         <div className="row">
@@ -58,8 +63,8 @@ export default class AdminAddPhotoCollection extends React.Component {
           <div className="col mt-4 mb-0">
             <input
               className="form-control d-inline"
-              defaultValue={collection.name}
-              onChange={(e) => this.setCollectionTitleText(e)}
+              defaultValue={this.props.collection.name}
+              // onChange={(e) => this.setCollectionTitleText(e)}
               id="collectionTitle"
             />
 
@@ -96,15 +101,8 @@ export default class AdminAddPhotoCollection extends React.Component {
         <hr className="mt-2 mb-5" />
 
         <div className="row">
-          {nestedCollections.map((collection) => {
-            if (collection.userId === "ef3d5c68-02c7-4959-864e-9ccafc402228") {
-              return (
-                <AdminPhotoThumbnail
-                  collection={collection}
-                  key={collection.id}
-                />
-              );
-            }
+          {this.props.collection.photos.map((photo) => {
+            return <AdminPhotoThumbnail photo={photo} key={photo.id} />;
           })}
         </div>
         <div className="custom-control custom-checkbox">
@@ -150,3 +148,10 @@ export default class AdminAddPhotoCollection extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    collection: state.selectedCollection,
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(AdminAddPhotoCollection));

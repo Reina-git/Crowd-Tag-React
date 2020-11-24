@@ -1,30 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import TrashIcon from "../../icons/icon-trash.svg";
 import toDisplayDate from "date-fns/format";
+import { connect } from "react-redux";
+import actions from "../../store/actions";
 
-export default function AdminCollectionUI(props) {
-  console.log("AdminCollectionsUI:", props);
+function AdminCollectionUI(props) {
+  // console.log("AdminCollectionsUI:", props);
+  function goToCollection() {
+    // console.log("Going to collection");
+    props.dispatch({
+      type: actions.STORE_SELECTED_COLLECTION,
+      payload: props.collection,
+    });
+    props.history.push("/admin-add-photo-collection");
+  }
   return (
     <div className="row mt-6">
-      <div className="col-12 col-sm-4">
+      <div
+        className="col-12 col-sm-4"
+        onClick={() => {
+          goToCollection();
+        }}
+      >
         <div className="img-square">
-          <Link to="/collection">
-            <img
-              src={props.collection.photos[0].url}
-              alt="..."
-              className="img-thumbnail thumb-img"
-            />
-          </Link>
+          <img
+            src={props.collection.photos[0].url}
+            alt="..."
+            className="img-thumbnail thumb-img"
+          />
         </div>
       </div>
-      <div className="col-6">
-        <Link
-          to="/admin-add-photo-collection"
-          className="collection-link stretched-link"
-        >
-          <p className="lead">{props.collection.name}</p>
-        </Link>
+      <div
+        className="col-6"
+        onClick={() => {
+          goToCollection();
+        }}
+      >
+        <p className="collection-link stretched-link"></p>
+
+        <p className="lead">{props.collection.name}</p>
+
         <p className="text-muted">{props.collection.institutionName}</p>
         <p className="text-muted mt-2">
           {toDisplayDate(props.collection.createdAt, "MMM. d, yyy")}
@@ -39,3 +55,9 @@ export default function AdminCollectionUI(props) {
     </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {};
+}
+
+export default withRouter(connect(mapStateToProps)(AdminCollectionUI));
