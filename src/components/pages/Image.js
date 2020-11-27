@@ -4,15 +4,11 @@ import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
 import RedX from "../../icons/icon-close.svg";
-import { nestedCollections } from "../../mock-data/nestedCollections";
 import classnames from "classnames";
 import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
-// console.log(nestedCollections);
-// const collection = nestedCollections[0];
-// const photo = collection.photos[0];
+import actions from "../../store/actions";
 
 class Image extends React.Component {
   constructor(props) {
@@ -21,6 +17,32 @@ class Image extends React.Component {
       tagText: "",
     };
   }
+
+  function deleteTag() {
+    const deletedTag = this.props.selectedTag.tag;
+    const cards = this.props.photo.tags;
+    // const filteredCards = without(cards, deletedCard);
+    console.log("deleted tag", deletedTag);
+    // this.props.dispatch({
+    //   type: actions.STORE_SELECTED_TAG,
+    //   payload: this.props.tag,
+    // });
+    // if (filteredCards[this.props.queue.index] === undefined) {
+    //    this.props.history.push("/review-empty");
+    // } else {
+    //    this.props.history.push("/review-imagery");
+    // }
+  }
+
+  // function goToCollection() {
+  //   console.log("Going to collection");
+  //   props.dispatch({
+  //     type: actions.STORE_SELECTED_COLLECTION,
+  //     payload: props.collection,
+  //   });
+  //   props.history.push("/collection");
+  // }
+
   checkHasInvalidCharCount() {
     if (
       this.state.tagText.length > MAX_CARD_CHARS ||
@@ -36,6 +58,7 @@ class Image extends React.Component {
   render() {
     console.log("props on image page", this.props.photo);
     const photo = this.props.photo;
+    console.log("tag", this.props.tag);
     return (
       <AppTemplate>
         <div className="row">
@@ -123,16 +146,25 @@ class Image extends React.Component {
 
             {photo.tags.map((tag) => {
               return (
-                <div className="d-inline-flex mr-2">
-                  <p className="tag-text">{tag.name}</p>
-                  <Link to="" width="20px" className="collection-link">
+                <div className="d-inline-flex">
+                  <p className="tag-text mt-3" key={tag.id} tag={tag.name}>
+                    {tag.name}
+                  </p>
+                  <button
+                    to=""
+                    width="20px"
+                    className="btn"
+                    onClick={() => {
+                      this.deleteTag();
+                    }}
+                  >
                     <img
                       src={RedX}
                       width="20px"
                       alt="delete"
-                      className="mb-2"
+                      className="ml-n3"
                     />
-                  </Link>
+                  </button>
                 </div>
               );
             })}
@@ -145,6 +177,7 @@ class Image extends React.Component {
 function mapStateToProps(state) {
   return {
     photo: state.selectedPhoto,
+    selectedTag: state.selectedTag,
   };
 }
 

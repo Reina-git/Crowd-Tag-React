@@ -3,21 +3,17 @@ import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
 import AddIcon from "../../icons/icon-add.svg";
 import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
-import { nestedCollections } from "../../mock-data/nestedCollections";
 import AdminPhotoThumbnail from "../ui/AdminPhotoThumbnail";
 import Save from "../../icons/save.svg";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-// const collection = nestedCollections[0];
-// const collection = this.props.collection;
 class AdminAddPhotoCollection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isDisplayingAddPhoto: false,
       isDisplayingDelete: false,
-      // collectionTitle: collection.name,
     };
   }
 
@@ -34,15 +30,9 @@ class AdminAddPhotoCollection extends React.Component {
     this.setState({
       isDisplayingAddPhoto: !this.state.isDisplayingAddPhoto,
     });
-
-    // this.setState({
-    //   isDisplayingAddPhoto: true,
-    // });
   }
 
   render() {
-    // console.log("admin add photo", this.props.collection.photos);
-    // const collection = this.props.collection;
     return (
       <AppTemplate>
         <div className="row">
@@ -111,7 +101,6 @@ class AdminAddPhotoCollection extends React.Component {
             className="custom-control-input"
             id="showDelete"
             name="showDelete"
-            // checked={this.state.isDisplayingDelete}
             value={!this.state.isDisplayingDelete}
             onChange={() => {
               this.showDelete();

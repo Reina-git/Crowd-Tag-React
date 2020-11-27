@@ -7,6 +7,7 @@ const initialState = {
   allCollections: [],
   selectedCollection: {},
   selectedPhoto: {},
+  selectedTag: {},
 };
 
 const store = createStore(combineReducers, initialState, composeWithDevTools());
