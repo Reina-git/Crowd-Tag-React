@@ -2,8 +2,12 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import actions from "../../store/actions";
+import { connect } from "react-redux";
 
-export default class SignUp extends React.Component {
+class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -94,6 +98,25 @@ export default class SignUp extends React.Component {
         createdAt: Date.now(),
       };
       console.log(user);
+      axios
+        .get(
+          "https://raw.githubusercontent.com/Reina-git/white-bear-mpa/main/src/mock-data/user.json"
+        )
+        .then((res) => {
+          // handle success
+          const currentUser = res.data;
+          console.log(currentUser);
+          this.props.dispatch({
+            type: actions.STORE_CURRENT_USER,
+            payload: res.data,
+          });
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
+      // make a push to different pages based on who is loggin in
+      //  this.props.history.push("/create-answer");
     }
   }
 
@@ -185,3 +208,7 @@ export default class SignUp extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {};
+}
+export default withRouter(connect(mapStateToProps)(SignUp));

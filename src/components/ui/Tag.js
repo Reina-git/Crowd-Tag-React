@@ -11,7 +11,7 @@ function Tag(props) {
     const tags = props.photo.tags;
     const filteredTags = without(tags, deletedTag);
     props.dispatch({
-      type: actions.STORE_SELECTED_TAG,
+      type: actions.STORE_DISPLAY_TAG,
       payload: filteredTags,
     });
     props.history.push("/image");
