@@ -3,7 +3,7 @@ import AppTemplate from "../ui/AppTemplate";
 import BackArrow from "../../icons/icon-arrow-thick-left-circle.svg";
 import { Link } from "react-router-dom";
 import LeftChevron from "../../icons/icon-cheveron-down.svg";
-import RedX from "../../icons/icon-close.svg";
+import Tag from "../ui/Tag";
 import classnames from "classnames";
 import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 import { connect } from "react-redux";
@@ -18,31 +18,6 @@ class Image extends React.Component {
     };
   }
 
-  function deleteTag() {
-    const deletedTag = this.props.selectedTag.tag;
-    const cards = this.props.photo.tags;
-    // const filteredCards = without(cards, deletedCard);
-    console.log("deleted tag", deletedTag);
-    // this.props.dispatch({
-    //   type: actions.STORE_SELECTED_TAG,
-    //   payload: this.props.tag,
-    // });
-    // if (filteredCards[this.props.queue.index] === undefined) {
-    //    this.props.history.push("/review-empty");
-    // } else {
-    //    this.props.history.push("/review-imagery");
-    // }
-  }
-
-  // function goToCollection() {
-  //   console.log("Going to collection");
-  //   props.dispatch({
-  //     type: actions.STORE_SELECTED_COLLECTION,
-  //     payload: props.collection,
-  //   });
-  //   props.history.push("/collection");
-  // }
-
   checkHasInvalidCharCount() {
     if (
       this.state.tagText.length > MAX_CARD_CHARS ||
@@ -55,10 +30,11 @@ class Image extends React.Component {
   setTagText(e) {
     this.setState({ tagText: e.target.value });
   }
+
   render() {
-    console.log("props on image page", this.props.photo);
+    // console.log("props on image page", this.props.photo);
     const photo = this.props.photo;
-    console.log("tag", this.props.tag);
+    // console.log("tag", this.props.selectedTag);
     return (
       <AppTemplate>
         <div className="row">
@@ -145,28 +121,7 @@ class Image extends React.Component {
             <div className="clearfix"></div>
 
             {photo.tags.map((tag) => {
-              return (
-                <div className="d-inline-flex">
-                  <p className="tag-text mt-3" key={tag.id} tag={tag.name}>
-                    {tag.name}
-                  </p>
-                  <button
-                    to=""
-                    width="20px"
-                    className="btn"
-                    onClick={() => {
-                      this.deleteTag();
-                    }}
-                  >
-                    <img
-                      src={RedX}
-                      width="20px"
-                      alt="delete"
-                      className="ml-n3"
-                    />
-                  </button>
-                </div>
-              );
+              return <Tag tag={tag} key={tag.id} />;
             })}
           </div>
         </div>
