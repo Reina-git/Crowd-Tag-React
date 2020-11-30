@@ -3,6 +3,9 @@ import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
+import actions from "../../store/actions";
+import { connect } from "react-redux";
 
 class UserLogin extends React.Component {
   constructor(props) {
@@ -68,7 +71,25 @@ class UserLogin extends React.Component {
         createdAt: Date.now(),
       };
       console.log(user);
-      this.props.history.push("/image");
+      axios
+        .get(
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/user.json"
+        )
+        .then((res) => {
+          // handle success
+          const currentUser = res.data;
+          console.log(currentUser);
+          this.props.dispatch({
+            type: actions.STORE_CURRENT_USER,
+            payload: res.data,
+          });
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
+      // make a push to different pages based on who is loggin in
+      this.props.history.push("/");
     }
   }
 
@@ -136,4 +157,8 @@ class UserLogin extends React.Component {
     );
   }
 }
-export default withRouter(UserLogin);
+
+function mapStateToProps(state) {
+  return {};
+}
+export default withRouter(connect(mapStateToProps)(UserLogin));

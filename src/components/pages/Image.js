@@ -9,13 +9,31 @@ import { checkIsOver, MAX_CARD_CHARS } from "../../utils/helpers";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import actions from "../../store/actions";
+import without from "lodash/without";
 
 class Image extends React.Component {
   constructor(props) {
     super(props);
+    const allTags = this.props.photo.tags;
     this.state = {
       tagText: "",
+      allTags: [],
+      displayedTags: allTags,
     };
+    this.deleteTag = this.deleteTag.bind(this);
+  }
+
+  deleteTag(tag) {
+    const deletedTag = tag;
+    const tags = this.state.displayedTags;
+    const filteredTags = without(tags, deletedTag);
+    //
+    this.setState({
+      displayedTags: filteredTags,
+    });
+    this.props.history.push("/image");
+    console.log("tag", filteredTags);
+    // console.log("filtered tags", filteredTags);
   }
 
   checkHasInvalidCharCount() {
@@ -31,10 +49,14 @@ class Image extends React.Component {
     this.setState({ tagText: e.target.value });
   }
 
+  // setTagsDisplay() {
+  //   const copyOfDisplayedTags = [...this.state.displayedTags];
+  // }
+
   render() {
-    // console.log("props on image page", this.props.photo);
+    console.log("props on image page", this.props.photo);
     const photo = this.props.photo;
-    // console.log("tag", this.props.selectedTag);
+
     return (
       <AppTemplate>
         <div className="row">
@@ -120,8 +142,8 @@ class Image extends React.Component {
           <div className="col-12">
             <div className="clearfix"></div>
 
-            {photo.tags.map((tag) => {
-              return <Tag tag={tag} key={tag.id} />;
+            {this.state.displayedTags.map((tag) => {
+              return <Tag tag={tag} key={tag.id} deleteTag={this.deleteTag} />;
             })}
           </div>
         </div>
@@ -132,7 +154,7 @@ class Image extends React.Component {
 function mapStateToProps(state) {
   return {
     photo: state.selectedPhoto,
-    selectedTag: state.selectedTag,
+    displayedTag: state.displayedTag,
   };
 }
 

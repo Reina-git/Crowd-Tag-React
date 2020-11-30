@@ -100,7 +100,7 @@ class SignUp extends React.Component {
       console.log(user);
       axios
         .get(
-          "https://raw.githubusercontent.com/Reina-git/white-bear-mpa/main/src/mock-data/user.json"
+          "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/user.json"
         )
         .then((res) => {
           // handle success
@@ -116,7 +116,7 @@ class SignUp extends React.Component {
           console.log(error);
         });
       // make a push to different pages based on who is loggin in
-      //  this.props.history.push("/create-answer");
+      this.props.history.push("/");
     }
   }
 

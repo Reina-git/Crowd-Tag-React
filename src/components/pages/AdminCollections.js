@@ -7,12 +7,19 @@ import AdminCollectionUI from "../ui/AdminCollectionUI";
 import axios from "axios";
 import { connect } from "react-redux";
 import actions from "../../store/actions";
+import without from "lodash/without";
 
 // const collection = nestedCollections[0];
 
 class AdminCollections extends React.Component {
   constructor(props) {
     super(props);
+    // console.log("props", this.props.allCollections);
+    const allCollections = this.props.allCollections;
+    this.state = {
+      displayedCollections: allCollections,
+    };
+    this.deleteCollection = this.deleteCollection.bind(this);
     axios
       .get(
         "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
@@ -34,6 +41,19 @@ class AdminCollections extends React.Component {
   // goToCollection() {
   //   this.props.dispatch({ type: actions.STORE_SELECTED_COLLECTION_INDEX });
   // }
+  deleteCollection(collection) {
+    // const deletedCollection = collection;
+    // const collections = this.state.displayedCollections;
+    // const filteredCollections = without(collections, deletedCollection);
+    // //
+    // this.setState({
+    //   displayedCollections: filteredCollections,
+    // });
+    // this.props.history.push("/admin-collections");
+    console.log("collection", collection);
+
+    // console.log("filtered tags", filteredTags);
+  }
 
   render() {
     const collection = this.props.allCollections;
@@ -55,12 +75,13 @@ class AdminCollections extends React.Component {
           
           
           */}
-          {collection.map((collection) => {
+          {this.state.displayedCollections.map((collection) => {
             if (collection.userId === "ef3d5c68-02c7-4959-864e-9ccafc402228") {
               return (
                 <AdminCollectionUI
                   collection={collection}
                   key={collection.id}
+                  deleteCollection={this.deleteCollection}
                 />
               );
             }
@@ -73,6 +94,7 @@ class AdminCollections extends React.Component {
 function mapStateToProps(state) {
   return {
     allCollections: state.allCollections,
+    displayedCollections: state.displayedCollections,
   };
 }
 

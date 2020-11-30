@@ -47,17 +47,27 @@ function AdminCollectionUI(props) {
         </p>
       </div>
       <div className="col-6 col-sm-2">
-        <Link to="" className="remove-link float-right">
-          <img className="" src={TrashIcon} alt="" width="20px" />
+        <button to="" className="remove-link float-right">
+          <img
+            className=""
+            src={TrashIcon}
+            alt=""
+            width="20px"
+            onClick={() => {
+              props.deleteCollection(props.collection);
+            }}
+          />
           Remove
-        </Link>
+        </button>
       </div>
     </div>
   );
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    // collection: state.selectedCollection,
+  };
 }
 
 export default withRouter(connect(mapStateToProps)(AdminCollectionUI));
