@@ -10,22 +10,22 @@ class Landing extends React.Component {
   constructor(props) {
     super(props);
 
-    axios
-      .get(
-        "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
-      )
-      .then((res) => {
-        // handle success
-        // console.log("test", res.data);
-        props.dispatch({
-          type: actions.STORE_ALL_COLLECTIONS,
-          payload: res.data,
-        });
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
+    // axios
+    //   .get(
+    //     "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
+    //   )
+    //   .then((res) => {
+    //     // handle success
+    //     // console.log("test", res.data);
+    //     props.dispatch({
+    //       type: actions.STORE_ALL_COLLECTIONS,
+    //       payload: res.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     // handle error
+    //     console.log(error);
+    //   });
 
     this.state = {
       order: '[["createdAt"], ["desc"]]',

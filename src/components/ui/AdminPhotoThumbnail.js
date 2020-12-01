@@ -15,18 +15,7 @@ function AdminPhotoThumbnail(props) {
     });
     props.history.push("/image");
   }
-  function removePhoto() {
-    const deletedPhoto = props.photo;
-    const photos = props.collection.photos;
-    const filteredPhotos = without(photos, deletedPhoto);
-    console.log("remove photo");
-    console.log(props);
-    props.dispatch({
-      type: actions.STORE_SELECTED_PHOTO,
-      payload: filteredPhotos,
-    });
-    props.history.push("/admin-add-photo-collection");
-  }
+
   return (
     <div className="col-lg-3 col-md-4 col-6 mb-5">
       <Link to="/image">
@@ -43,12 +32,12 @@ function AdminPhotoThumbnail(props) {
       </Link>
       <button
         to=""
-        className="remove-link tag-text-remove"
+        className="remove-link tag-text-remove btn ml-n5"
         onClick={() => {
-          removePhoto();
+          props.deletePhoto(props.photo);
         }}
       >
-        <img className="" src={TrashIcon} alt="" width="15px" />
+        <img className="mt-n1" src={TrashIcon} alt="" width="15px" />
         Remove
       </button>
     </div>

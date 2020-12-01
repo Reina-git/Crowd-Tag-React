@@ -7,14 +7,20 @@ import AdminPhotoThumbnail from "../ui/AdminPhotoThumbnail";
 import Save from "../../icons/save.svg";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import without from "lodash/without";
+import actions from "../../store/actions";
 
 class AdminAddPhotoCollection extends React.Component {
   constructor(props) {
     super(props);
+    // console.log("props", props.collection.photos);
+    const allPhotos = this.props.collection.photos;
     this.state = {
       isDisplayingAddPhoto: false,
       isDisplayingDelete: false,
+      displayedPhotos: allPhotos,
     };
+    this.deletePhoto = this.deletePhoto.bind(this);
   }
 
   setCollectionTitleText(e) {
@@ -30,6 +36,32 @@ class AdminAddPhotoCollection extends React.Component {
     this.setState({
       isDisplayingAddPhoto: !this.state.isDisplayingAddPhoto,
     });
+  }
+  deletePhoto(photo) {
+    const deletedPhoto = photo;
+    const photos = this.state.displayedPhotos;
+    const filteredPhotos = without(photos, deletedPhoto);
+    console.log("filteredPhotos", filteredPhotos);
+    //
+    this.setState({
+      displayedPhotos: filteredPhotos,
+    });
+  }
+  deleteCollection() {
+    console.log(this.props.allCollections);
+    const deletedCollection = this.props.collection;
+    const allCollections = this.props.allCollections;
+    const filteredCollections = without(allCollections, deletedCollection);
+    // console.log(filteredCards);
+    this.props.dispatch({
+      type: actions.STORE_ALL_COLLECTIONS,
+      payload: filteredCollections,
+    });
+    // if (filteredCards[this.props.queue.index] === undefined) {
+    this.props.history.push("/admin-collections");
+    // } else {
+    //    this.props.history.push("/review-imagery");
+    // }
   }
 
   render() {
@@ -91,8 +123,14 @@ class AdminAddPhotoCollection extends React.Component {
         <hr className="mt-2 mb-5" />
 
         <div className="row">
-          {this.props.collection.photos.map((photo) => {
-            return <AdminPhotoThumbnail photo={photo} key={photo.id} />;
+          {this.state.displayedPhotos.map((photo) => {
+            return (
+              <AdminPhotoThumbnail
+                photo={photo}
+                key={photo.id}
+                deletePhoto={this.deletePhoto}
+              />
+            );
           })}
         </div>
         <div className="custom-control custom-checkbox">
@@ -127,7 +165,13 @@ class AdminAddPhotoCollection extends React.Component {
         <div className="mt-4 mb-3">
           {this.state.isDisplayingDelete && (
             <>
-              <button className="btn btn-outline-danger" id="delete-button">
+              <button
+                className="btn btn-outline-danger"
+                id="delete-button"
+                onClick={() => {
+                  this.deleteCollection();
+                }}
+              >
                 Delete collection
               </button>
             </>
@@ -140,6 +184,7 @@ class AdminAddPhotoCollection extends React.Component {
 function mapStateToProps(state) {
   return {
     collection: state.selectedCollection,
+    allCollections: state.allCollections,
   };
 }
 

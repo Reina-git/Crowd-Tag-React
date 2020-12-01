@@ -20,6 +20,24 @@ class AdminCollections extends React.Component {
       displayedCollections: allCollections,
     };
     this.deleteCollection = this.deleteCollection.bind(this);
+    //   axios
+    //     .get(
+    //       "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
+    //     )
+    //     .then((res) => {
+    //       // handle success
+    //       // console.log("test", res.data);
+    //       props.dispatch({
+    //         type: actions.STORE_ALL_COLLECTIONS,
+    //         payload: res.data,
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       // handle error
+    //       console.log(error);
+    //     });
+  }
+  componentDidMount() {
     axios
       .get(
         "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
@@ -27,7 +45,7 @@ class AdminCollections extends React.Component {
       .then((res) => {
         // handle success
         // console.log("test", res.data);
-        props.dispatch({
+        this.props.dispatch({
           type: actions.STORE_ALL_COLLECTIONS,
           payload: res.data,
         });
@@ -38,18 +56,19 @@ class AdminCollections extends React.Component {
       });
   }
 
-  // goToCollection() {
-  //   this.props.dispatch({ type: actions.STORE_SELECTED_COLLECTION_INDEX });
-  // }
   deleteCollection(collection) {
-    // const deletedCollection = collection;
-    // const collections = this.state.displayedCollections;
-    // const filteredCollections = without(collections, deletedCollection);
-    // //
-    // this.setState({
-    //   displayedCollections: filteredCollections,
-    // });
-    // this.props.history.push("/admin-collections");
+    console.log("inside delete function");
+    const deletedCollection = collection;
+    console.log(" deletedCollection", deletedCollection);
+    const collections = this.state.displayedCollections;
+    console.log("collection", collection);
+    const filteredCollections = without(collections, deletedCollection);
+    console.log("filteredCollections", filteredCollections);
+    //
+    this.setState({
+      displayedCollections: filteredCollections,
+    });
+
     console.log("collection", collection);
 
     // console.log("filtered tags", filteredTags);

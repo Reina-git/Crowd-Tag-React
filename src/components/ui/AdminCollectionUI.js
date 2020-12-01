@@ -6,9 +6,7 @@ import { connect } from "react-redux";
 import actions from "../../store/actions";
 
 function AdminCollectionUI(props) {
-  // console.log("AdminCollectionsUI:", props);
   function goToCollection() {
-    // console.log("Going to collection");
     props.dispatch({
       type: actions.STORE_SELECTED_COLLECTION,
       payload: props.collection,
@@ -47,16 +45,15 @@ function AdminCollectionUI(props) {
         </p>
       </div>
       <div className="col-6 col-sm-2">
-        <button to="" className="remove-link float-right">
-          <img
-            className=""
-            src={TrashIcon}
-            alt=""
-            width="20px"
-            onClick={() => {
-              props.deleteCollection(props.collection);
-            }}
-          />
+        <button
+          to=""
+          className="remove-link float-right btn"
+          onClick={() => {
+            console.log("clicked");
+            props.deleteCollection(props.collection);
+          }}
+        >
+          <img className="" src={TrashIcon} alt="" width="20px" />
           Remove
         </button>
       </div>
