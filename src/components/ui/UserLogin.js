@@ -97,8 +97,8 @@ class UserLogin extends React.Component {
     return (
       <div className="col-12 col-lg-5">
         <div className="card card-body-padding mt-9 d-flex justify-content-center">
-          <h2>Nice to meet you.</h2>
-          <p>Sign up for Crowd Tag.</p>
+          <h2>Welcome back</h2>
+
           <p className="text-muted mt-3 lead">Email address</p>
 
           <div className="input-group mb-3 mt-2">
@@ -144,7 +144,7 @@ class UserLogin extends React.Component {
 
           <button
             to="/create-answer"
-            className="btn btn-success btn-block mt-5"
+            className="btn btn-primary btn-block mt-5"
             id="letsGoButton"
             onClick={() => {
               this.validateAndCreateUser();

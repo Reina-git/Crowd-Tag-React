@@ -2,11 +2,11 @@ import React from "react";
 import classnames from "classnames";
 import hash from "object-hash";
 import { v4 as getUuid } from "uuid";
-import { EMAIL_REGEX } from "../../utils/helpers";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import actions from "../../store/actions";
 import { connect } from "react-redux";
+import { EMAIL_REGEX } from "../../utils/helpers";
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -23,11 +23,6 @@ class SignUp extends React.Component {
   showInputs() {
     this.setState({
       isDisplayingInputs: true,
-    });
-  }
-  showLibrary() {
-    this.setState({
-      isDisplayingLibrary: !this.state.isDisplayingLibrary,
     });
   }
 
@@ -89,9 +84,8 @@ class SignUp extends React.Component {
 
   async validateAndCreateUser() {
     const emailInput = document.getElementById("sign-up-email-input").value;
-    const passwordInput = document.getElementById("sign-up-password-input")
-      .value;
-    const libraryName = document.getElementById("sign-up-library-name").value;
+    const passwordInput = document.getElementById("sign-up-password-input");
+    // const libraryName = document.getElementById("sign-up-library-name").value;
     await this.setEmailState(emailInput);
     await this.setPasswordState(passwordInput, emailInput);
     if (
@@ -103,7 +97,7 @@ class SignUp extends React.Component {
         email: emailInput,
         password: hash(passwordInput),
         createdAt: Date.now(),
-        libraryName: libraryName,
+        // libraryName: libraryName,
       };
       console.log(user);
       axios
@@ -115,7 +109,7 @@ class SignUp extends React.Component {
           const currentUser = res.data;
           console.log(currentUser);
           this.props.dispatch({
-            type: actions.UPDATE_CURRENT_USER,
+            type: actions.STORE_CURRENT_USER,
             payload: res.data,
           });
         })
@@ -123,6 +117,7 @@ class SignUp extends React.Component {
           // handle error
           console.log(error);
         });
+      // make a push to different pages based on who is loggin in
       this.props.history.push("/");
     }
   }
@@ -131,12 +126,12 @@ class SignUp extends React.Component {
     return (
       <div className="col-12 col-lg-5">
         <div className="card card-body-padding mt-9 d-flex justify-content-center">
-          {!this.state.isDisplayingInputs && <h2>Nice to meet you</h2>}
-          <p className="text-muted">Sign up for Crowd Tag.</p>
+          <h2>Nice to meet you.</h2>
+          {!this.state.isDisplayingInputs && <p>Sign up for Crowd Tag.</p>}
           <div id="sign-up-card">
             {this.state.isDisplayingInputs && (
               <>
-                <p className="text-muted mt-3">Let's get you signed up</p>
+                <p className="text-primary mt-3">Let's get you signed up</p>
 
                 <p className="text-muted mt-3 lead">Email address</p>
 
@@ -153,18 +148,7 @@ class SignUp extends React.Component {
                     aria-describedby="inputGroup-sizing-default"
                   />
                 </div>
-
-                {this.state.hasEmailError && (
-                  <p
-                    className="text-danger lead mt-n4 mb-2"
-                    id="sign-up-email-error"
-                  >
-                    {this.state.emailError}
-                  </p>
-                )}
-
-                {/* new field */}
-                <div className="custom-control custom-checkbox mt-n2">
+                {/* <div className="custom-control custom-checkbox mt-n3">
                   <input
                     type="checkbox"
                     className="custom-control-input mt-n3"
@@ -206,9 +190,13 @@ class SignUp extends React.Component {
                       </div>
                     </>
                   )}
-                </div>
+                </div> */}
 
-                {/* end */}
+                {this.state.hasEmailError && (
+                  <p className="text-danger lead mt-2" id="sign-up-email-error">
+                    {this.state.emailError}
+                  </p>
+                )}
 
                 <p className="text-muted mt-3 lead">Create a password</p>
                 <p className="text-muted lead">

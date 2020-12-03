@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import actions from "../../store/actions";
 import without from "lodash/without";
+import ReactDOM from "react-dom";
 
 class Image extends React.Component {
   constructor(props) {
@@ -17,10 +18,11 @@ class Image extends React.Component {
     const allTags = this.props.photo.tags;
     this.state = {
       tagText: "",
-      allTags: [],
       displayedTags: allTags,
     };
     this.deleteTag = this.deleteTag.bind(this);
+    this.setTagText = this.setTagText.bind(this);
+    this.addTag = this.addTag.bind(this);
   }
 
   deleteTag(tag) {
@@ -34,6 +36,32 @@ class Image extends React.Component {
     this.props.history.push("/image");
     console.log("tag", filteredTags);
     // console.log("filtered tags", filteredTags);
+  }
+
+  // addTag(e) {
+  //   if (e.keyCode === 13) {
+  //     const addNewTag = e.target.value;
+  //     console.log(addNewTag);
+  //     this.setState({ tagText: addNewTag });
+  //   }
+  // }
+
+  addTag(e) {
+    if (e.keyCode === 13) {
+      let newTagObject = {
+        id: Date.now(),
+        name: "",
+        userId: "",
+      };
+      newTagObject.name = document.getElementById("tagText").value;
+      const copyOfDisplayedTags = [...this.state.displayedTags];
+      const updatedDisplayedTags = copyOfDisplayedTags.concat(newTagObject);
+      this.setState({
+        displayedTags: updatedDisplayedTags,
+      });
+      this.setState({ tagText: "" });
+      console.log(newTagObject);
+    }
   }
 
   checkHasInvalidCharCount() {
@@ -54,7 +82,7 @@ class Image extends React.Component {
   // }
 
   render() {
-    console.log("props on image page", this.props.photo);
+    // console.log("props on image page", this.props.photo);
     const photo = this.props.photo;
 
     return (
@@ -121,9 +149,13 @@ class Image extends React.Component {
             <p className="text-primary">Type a tag then press enter.</p>
             <input
               className="form-control form-control-sm mt-3"
+              ref="tagInput"
               type="text"
               placeholder="Add a tag"
               id="tagText"
+              value={this.state.tagText}
+              onKeyDown={this.addTag}
+              // onChange={this.setTagText}
               onChange={(e) => this.setTagText(e)}
             />
           </div>

@@ -25,7 +25,7 @@ function AdminCollectionUI(props) {
           <img
             src={props.collection.photos[0].url}
             alt="..."
-            className="img-thumbnail thumb-img"
+            className="img-thumbnail"
           />
         </div>
       </div>

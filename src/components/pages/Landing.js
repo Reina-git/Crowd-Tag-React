@@ -4,29 +4,11 @@ import CollectionUI from "../ui/CollectionUI";
 import axios from "axios";
 import orderBy from "lodash/orderBy";
 import { connect } from "react-redux";
-import actions from "../../store/actions";
+// import actions from "../../store/actions";
 
 class Landing extends React.Component {
   constructor(props) {
     super(props);
-
-    // axios
-    //   .get(
-    //     "https://raw.githubusercontent.com/Reina-git/Crowd-Tag-React/main/src/mock-data/nested-collections.json"
-    //   )
-    //   .then((res) => {
-    //     // handle success
-    //     // console.log("test", res.data);
-    //     props.dispatch({
-    //       type: actions.STORE_ALL_COLLECTIONS,
-    //       payload: res.data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     // handle error
-    //     console.log(error);
-    //   });
-
     this.state = {
       order: '[["createdAt"], ["desc"]]',
       displayedCollections: [],

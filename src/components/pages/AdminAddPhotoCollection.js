@@ -86,7 +86,7 @@ class AdminAddPhotoCollection extends React.Component {
             <input
               className="form-control d-inline"
               defaultValue={this.props.collection.name}
-              // onChange={(e) => this.setCollectionTitleText(e)}
+              onChange={(e) => this.setCollectionTitleText(e)}
               id="collectionTitle"
             />
 
