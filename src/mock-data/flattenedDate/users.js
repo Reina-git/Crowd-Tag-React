@@ -4,7 +4,6 @@ export const users = [
     email: "reinadu@gmail.com",
     password: "3d98c8350fe40d6654ddafdb4b70f86e",
     createdAt: 1604966018,
-    accountType: "regular",
     institutionName: "",
   },
   {
@@ -12,7 +11,6 @@ export const users = [
     email: "tawny@gmail.com",
     password: "f2604fd86fc7851aabd6e765d21e9b3f",
     createdAt: 1604016000,
-    accountType: "admin",
     institutionName: "Schlesinger Library on the History of Women in America",
   },
   {
@@ -20,7 +18,6 @@ export const users = [
     email: "Mike@gmail.com",
     password: "80f20926b20c2f30ec2fc70def6c6877",
     createdAt: 1605035555538,
-    accountType: "admin",
     institutionName: "Vancouver Public Library",
   },
 ];
