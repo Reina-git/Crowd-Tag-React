@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fdfca045.chunk.css",
+    "main.js": "/static/js/main.ce83dfc5.chunk.js",
+    "main.js.map": "/static/js/main.ce83dfc5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.67e67455.js",
+    "runtime-main.js.map": "/static/js/runtime-main.67e67455.js.map",
+    "static/js/2.16acdee9.chunk.js": "/static/js/2.16acdee9.chunk.js",
+    "static/js/2.16acdee9.chunk.js.map": "/static/js/2.16acdee9.chunk.js.map",
+    "static/js/3.e3fb1e4e.chunk.js": "/static/js/3.e3fb1e4e.chunk.js",
+    "static/js/3.e3fb1e4e.chunk.js.map": "/static/js/3.e3fb1e4e.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.fdfca045.chunk.css.map": "/static/css/main.fdfca045.chunk.css.map",
+    "static/js/2.16acdee9.chunk.js.LICENSE.txt": "/static/js/2.16acdee9.chunk.js.LICENSE.txt",
+    "static/media/icon-add.16f9cab5.svg": "/static/media/icon-add.16f9cab5.svg",
+    "static/media/icon-arrow-thick-left-circle.362c0449.svg": "/static/media/icon-arrow-thick-left-circle.362c0449.svg",
+    "static/media/icon-cheveron-down.24fe5566.svg": "/static/media/icon-cheveron-down.24fe5566.svg",
+    "static/media/icon-close.91034315.svg": "/static/media/icon-close.91034315.svg",
+    "static/media/icon-trash.00bdc38a.svg": "/static/media/icon-trash.00bdc38a.svg",
+    "static/media/noun_shutter_1063959.9f050b63.svg": "/static/media/noun_shutter_1063959.9f050b63.svg",
+    "static/media/save.cb372668.svg": "/static/media/save.cb372668.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.67e67455.js",
+    "static/js/2.16acdee9.chunk.js",
+    "static/css/main.fdfca045.chunk.css",
+    "static/js/main.ce83dfc5.chunk.js"
+  ]
+}
